@@ -3,6 +3,16 @@ from .models import *
 from django.contrib.auth import authenticate
 
 
+class UserDataSerializer(serializers.ModelSerializer):
+    #JinaLaKituo = VituoVyoteSerializer(many=False)
+    
+    class Meta:
+        model = CustomerUser
+        fields = '__all__'
+        # fields = ['id', 'username', 'email','phone','first_name','profile_image']
+
+
+
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
