@@ -122,6 +122,8 @@ from dotenv import load_dotenv
 import os
 
 import requests
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 
 import base64
 import requests
@@ -193,8 +195,10 @@ class CreateSchool(APIView):
 
 
 class CreateClassRoom(APIView):
-
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
+    #permission_classes = [IsAuthenticated]
 
     def post(self, request):
 
@@ -212,8 +216,10 @@ class CreateClassRoom(APIView):
 
 
 class GetClasses(APIView):
-
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
+    #permission_classes = [IsAuthenticated]
 
     def get(self, request):
 
@@ -227,8 +233,10 @@ class GetClasses(APIView):
 
 
 class CreateStream(APIView):
-
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
+    #permission_classes = [IsAuthenticated]
 
     def post(self, request):
 
@@ -242,8 +250,10 @@ class CreateStream(APIView):
 
 
 class GetStreams(APIView):
-
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
+    #permission_classes = [IsAuthenticated]
 
     def get(self, request, class_id):
 
@@ -257,8 +267,10 @@ class GetStreams(APIView):
 
 
 class CreateStudent(APIView):
-
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
+    #permission_classes = [IsAuthenticated]
 
     def post(self, request):
 
@@ -276,8 +288,10 @@ class CreateStudent(APIView):
 
 
 class GetStudents(APIView):
-
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
+    #permission_classes = [IsAuthenticated]
 
     def get(self, request):
 
@@ -303,8 +317,10 @@ class GetStudents(APIView):
 
 
 class CreateSubject(APIView):
-
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
+    #permission_classes = [IsAuthenticated]
 
     def post(self, request):
 
