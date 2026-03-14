@@ -134,6 +134,11 @@ from .helpers import get_grade
 # Load environment variables
 load_dotenv()
 
+class LatestVersionView(APIView):
+    def get(self, request):
+        latest_version = "1"
+        return JsonResponse({"latest_version": latest_version})
+
 
 class RegisterUser(APIView):
 
