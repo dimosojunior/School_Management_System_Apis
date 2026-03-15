@@ -56,11 +56,13 @@ class RegisterSerializer(serializers.ModelSerializer):
             'username',
             'password',
             'email',
-            'role'
+            'role',
+            'school'
         ]
 
         extra_kwargs = {
-            'password': {'write_only': True}
+            'password': {'write_only': True},
+            'school': {'read_only': True}
         }
 
     def create(self, validated_data):
@@ -69,11 +71,12 @@ class RegisterSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             password=validated_data['password'],
             email=validated_data['email'],
-            role=validated_data['role']
+            role=validated_data['role'],
+            school=validated_data.get('school')
         )
 
         return user
-    
+
     
 class LoginSerializer(serializers.Serializer):
 
