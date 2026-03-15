@@ -142,15 +142,41 @@ class LatestVersionView(APIView):
         return JsonResponse({"latest_version": latest_version})
 
 
+# class RegisterUser(APIView):
+
+#     def post(self, request):
+
+#         serializer = RegisterSerializer(data=request.data)
+
+#         if serializer.is_valid():
+
+#             user = serializer.save()
+
+#             token = Token.objects.create(user=user)
+
+#             return Response({
+#                 "token": token.key,
+#                 "user": serializer.data
+#             })
+
+#         return Response(serializer.errors)
+
 class RegisterUser(APIView):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
 
-        serializer = RegisterSerializer(data=request.data)
+        data = request.data.copy()
+
+        data['school'] = request.user.school.id
+
+        serializer = RegisterSerializer(data=data)
 
         if serializer.is_valid():
 
-            user = serializer.save()
+            user = serializer.save(school=request.user.school)
 
             token = Token.objects.create(user=user)
 
@@ -160,7 +186,6 @@ class RegisterUser(APIView):
             })
 
         return Response(serializer.errors)
-
 
 class LoginUser(APIView):
 

@@ -19,7 +19,36 @@ class SchoolSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+# class RegisterSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = CustomerUser
+#         fields = [
+#             'id',
+#             'username',
+#             'password',
+#             'email',
+#             'role',
+#             'school'
+#         ]
+
+#         extra_kwargs = {
+#             'password': {'write_only': True}
+#         }
+
+#     def create(self, validated_data):
+
+#         user = CustomerUser.objects.create_user(
+#             username=validated_data['username'],
+#             password=validated_data['password'],
+#             email=validated_data['email'],
+#             role=validated_data['role'],
+#             school=validated_data['school']
+#         )
+
+#         return user
+
 class RegisterSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = CustomerUser
         fields = [
@@ -27,8 +56,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             'username',
             'password',
             'email',
-            'role',
-            'school'
+            'role'
         ]
 
         extra_kwargs = {
@@ -41,13 +69,12 @@ class RegisterSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             password=validated_data['password'],
             email=validated_data['email'],
-            role=validated_data['role'],
-            school=validated_data['school']
+            role=validated_data['role']
         )
 
         return user
-
-
+    
+    
 class LoginSerializer(serializers.Serializer):
 
     username = serializers.CharField()
