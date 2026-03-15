@@ -96,6 +96,10 @@ class LoginSerializer(serializers.Serializer):
         data['user'] = user
         return data
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomerUser
+        fields = "__all__"
 
 class ClassRoomSerializer(serializers.ModelSerializer):
     class Meta:

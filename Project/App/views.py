@@ -291,6 +291,8 @@ class GetStreams(APIView):
         return Response(serializer.data)
 
 
+
+
 class CreateStudent(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -311,6 +313,20 @@ class CreateStudent(APIView):
 
         return Response(serializer.errors)
 
+class GetParents(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+
+        parents = CustomerUser.objects.filter(
+            school=request.user.school,
+            role="parent"
+        )
+
+        serializer = UserSerializer(parents, many=True)
+
+        return Response(serializer.data)
 
 class GetStudents(APIView):
     authentication_classes = [TokenAuthentication]
