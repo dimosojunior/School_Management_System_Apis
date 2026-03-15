@@ -330,7 +330,20 @@ class GetStudents(APIView):
 
 
 
+class GetStudentsInStream(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
+    def get(self, request, stream_id):
+
+        students = Student.objects.filter(
+            school=request.user.school,
+            stream_id=stream_id
+        )
+
+        serializer = StudentSerializer(students, many=True)
+
+        return Response(serializer.data)
 
 
 

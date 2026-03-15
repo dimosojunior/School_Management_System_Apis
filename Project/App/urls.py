@@ -22,6 +22,9 @@ urlpatterns = [
 
     path('students/', views.GetStudents.as_view()),
 
+    path('students/stream/<int:stream_id>/', views.GetStudentsInStream.as_view()),
+    
+
 
 
     ##########################################################
